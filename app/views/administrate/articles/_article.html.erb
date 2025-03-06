@@ -1,4 +1,6 @@
 <div id="<%= dom_id article %>">
+
+
   <p>
     <strong>Title:</strong>
     <%= article.title %>
@@ -9,4 +11,9 @@
     <%= article.body %>
   </p>
 
+  <p>
+    <strong>Cover:</strong>
+    <%= image_tag article.cover_image.variant(:thumb) if article.cover_image.attached? %>
+  </p>
+  
 </div>
