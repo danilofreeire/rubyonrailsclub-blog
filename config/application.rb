@@ -46,6 +46,5 @@ module RubyonrailsclubBlog
 
     # Active Storage
     config.active_storage.variant_processor = :mini_magick
-    
   end
 end

@@ -5,7 +5,7 @@ module Administrate
     before_action :set_article, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
     before_action :authenticate_admin!
     layout "administrate"
-    
+
     # GET /articles or /articles.json
     def index
       @articles = Article.all
@@ -62,7 +62,7 @@ module Administrate
         format.json { head(:no_content) }
       end
     end
-    
+
     def destroy_cover_image
       @article.cover_image.purge
 
