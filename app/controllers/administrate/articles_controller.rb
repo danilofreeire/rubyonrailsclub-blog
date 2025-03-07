@@ -2,7 +2,7 @@
 
 module Administrate
   class ArticlesController < ApplicationController
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :set_article, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
     before_action :authenticate_admin!
     
     # GET /articles or /articles.json
@@ -43,7 +43,7 @@ module Administrate
     def update
       respond_to do |format|
         if @article.update(article_params)
-          format.html { redirect_to[:administrate, @article], notice: "Article was successfully updated.") }
+          format.html { redirect_to([:administrate, @article], notice: "Article was successfully updated.") }
           format.json { render(:show, status: :ok, location: @article) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }
@@ -59,6 +59,14 @@ module Administrate
       respond_to do |format|
         format.html { redirect_to(articles_path, status: :see_other, notice: "Article was successfully destroyed.") }
         format.json { head(:no_content) }
+      end
+    end
+    
+    def destroy_cover_image
+      @article.cover_image.purge
+
+      respond_to do |format|
+        format.turbo_stream { render(turbo_stream: turbo_stream.remove(@article)) }
       end
     end
 
