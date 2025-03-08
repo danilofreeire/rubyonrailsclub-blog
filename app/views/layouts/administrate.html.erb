@@ -19,6 +19,9 @@
 
   
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
     <%= javascript_importmap_tags %>
   </head>
 
@@ -29,11 +32,34 @@
 	<main class="admin-main-content">
 		<%=yield%>
 	</main>
+  
+
 
 
 </body>
 
   <%= javascript_include_tag "admin", "data-turbo-track": "reload" %>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+
+  <script>
+      Toastify({
+        text: "This is a toast",
+        duration: 3000,
+        style: {
+          background: "#cc0000",
+        }
+      }).showToast();
+
+      Toastify({
+        text: "This is a toast",
+        duration: 3000,
+        style: {
+          background: "green",
+        }
+      }).showToast();
+    </script>
 
 
 
