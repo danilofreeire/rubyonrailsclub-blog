@@ -29,9 +29,15 @@
   @include bp-medium() {
     font-size: $element-small-font-size;
   }
+
+  
 }
 
 
+.button-transparent {
+  border: none;
+  background-color: transparent;
+}
 
 
 

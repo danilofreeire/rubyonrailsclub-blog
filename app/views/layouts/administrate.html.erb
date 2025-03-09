@@ -33,6 +33,9 @@
 		<%=yield%>
 	</main>
   
+  <%= javascript_include_tag "admin", "data-turbo-track": "reload" %>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
   <% if notice %>
     <script>
@@ -48,9 +51,6 @@
 
 
 </body>
-
-  <%= javascript_include_tag "admin", "data-turbo-track": "reload" %>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
 
