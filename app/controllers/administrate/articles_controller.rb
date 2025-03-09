@@ -3,7 +3,7 @@
 module Administrate
   class ArticlesController < AdministrateController
     before_action :set_article, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
-  
+    before_action :set_categories, only: [:new, :edit, :show]  
 
     # GET /articles or /articles.json
     def index
@@ -17,6 +17,7 @@ module Administrate
     # GET /articles/new
     def new
       @article = Article.new
+
     end
 
     # GET /articles/1/edit
@@ -71,7 +72,9 @@ module Administrate
     end
 
     private
-
+    def set_categories  
+      @categories = Category.all  
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.friendly.find(params[:id])

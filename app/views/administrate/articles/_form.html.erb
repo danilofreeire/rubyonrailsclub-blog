@@ -19,7 +19,7 @@
     <div class="input-row">
       <div class="input-container">
         <%= form.label :category_id, class:"label" %>
-        <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, disabled: (params[:action]=="show"), class:"select" %>
+        <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecione uma categoria" }, disabled: (params[:action]=="show"), class:"select" %>
 
       </div>
     </div>
