@@ -15,24 +15,17 @@ namespace :dev do
   task add_categories: :environment do
     show_spinner("Adding categories to the database") { add_categories }
   end
-  
 
   desc "Add articles to the database"
   task add_articles: :environment do
     show_spinner("Adding articles") { add_articles }
   end
 
-
   def add_categories
     ["Ruby", "Rails", "WSL", "Linux"].each do |name|
       Category.create!(name: name)
     end
   end
-
-
-
-
-
 
   def add_articles
     50.times do
