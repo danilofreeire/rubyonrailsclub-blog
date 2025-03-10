@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :admins
   get "welcome/index"
   
-  resources :articles, only: [:show]
+  resources :articles, only: [:show] do
+    resources :comments
+  end
   
 
   namespace :administrate do
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
         delete :destroy_cover_image
       end
     end
+
+
     resources :categories do
       member do
         delete :destroy_cover_image
