@@ -106,7 +106,14 @@
     background-size: contain;
   }
 }
+.button.sign-up {
+  border: 1px solid #d0d0d0;
+  background-color: #fff;
 
+  .button-label {
+    color: #757575;
+  }
+}
 .button.light {
   font-weight: $font-weight-regular;
 }
