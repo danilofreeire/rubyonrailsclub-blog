@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   namespace :administrate do
     get "/", to: "dashboards#index"
 
+    resources :authors do
+       member do
+         delete :destroy_avatar_image
+       end
+     end
+ 
+
     resources :articles do
       member do
         delete :destroy_cover_image

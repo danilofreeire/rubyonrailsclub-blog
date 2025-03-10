@@ -30,11 +30,21 @@
 					<label for="#">Artigos</label>
 				<% end %>
 
+
+				<%= link_to administrate_authors_path, class: active_link?("authors") do %>
+						<div class="icon">
+						<%= image_tag "icons/white/authors.svg", alt: "autores" %>
+						</div>
+						<label for="#">Autores</label>
+				<% end %>
+
 				<%= link_to administrate_categories_path, class: active_link?("categories") do %>					<div class="icon">
 						<%= image_tag "icons/white/categories.svg", alt: "categories" %>
 					</div>
 					<label for="#">Categorias</label>
 				<% end %>
+
+				
 				
 			</nav>
 		</div>
