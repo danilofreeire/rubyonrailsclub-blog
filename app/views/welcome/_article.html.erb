@@ -1,15 +1,15 @@
+<%= link_to article_path(article), class:"item" do %>
+  <%= image_tag(cover_image_fallback(article) , class: "item-image", alt:"article image") %>
 
-<%= link_to article_path(article), class: "item" do %>
-      <%=image_tag(cover_image_fallback(article), alt: "Post 1", class: "item-image")%>
-          <div class="item-row">
-            <div class="item-category"><%= article.category.name %></div>
-            <div class="item-comments">25</div>
-          </div>
-          <div class="item-row">
-            <div class="item-title">    <%= article.title %></div>
-          </div>
-          <div class="item-row">
-            <div class="item-author"><%= article.author.name %></div>
-     <div class="item-date"><%= article.created_at.strftime("%d de %b") %></div>
-          </div>
-<%end%>
+  <div class="item-row">
+    <div class="item-category"><%= article.category.name %></div>
+    <div class="item-comments"><%= article.comments.count %></div>
+  </div>
+  <div class="item-row">
+    <div class="item-title"><%= article.title %></div>
+  </div>
+  <div class="item-row">
+    <div class="item-author"><%= article.author.name %></div>
+    <div class="item-date"><%= article.created_at.strftime("%d de %b") %></div>
+  </div>
+<% end %>

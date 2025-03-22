@@ -3,35 +3,30 @@
     <div class="input-row">
       <div class="input-container">
         <%= form.label :title, class:"label" %>
-        <%= form.text_field :title, disabled: (params[:action]=="show"), placeholder:"Digite aqui o título do post", class:"input" %>
+        <%= form.text_field :title, disabled: (params[:action] == "show"), placeholder:"Digite aqui o título do post", class:"input" %>
       </div>
-
-
     </div>
     <div class="input-row">
       <div class="input-container">
         <%= form.label :body, class:"label" %>
-        <%= form.text_area :body, disabled: (params[:action]=="show"), rows:"18", class:"textarea", placeholder:"Escreva aqui o conteúdo do post" %>
-
+        <%= link_to "[markdown]", "#", id: "markdown-button" %>
+        <%= form.text_area :body, disabled: (params[:action] == "show"), rows:"18", class:"textarea", placeholder:"Escreva aqui o conteúdo do post" %>
       </div>
     </div>
 
     <div class="input-row">
       <div class="input-container">
         <%= form.label :category_id, class:"label" %>
-        <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecione uma categoria" }, disabled: (params[:action]=="show"), class:"select" %>
-
+        <%= form.select :category_id, options_from_collection_for_select(@categories, :id, :name, article.category_id), {}, { disabled: (params[:action] == "show"), class:"select" } %>
       </div>
     </div>
 
-
     <div class="input-row">
-       <div class="input-container">
-         <%= form.label :author_id, class:"label" %>
-         <%= form.select :author_id, options_from_collection_for_select(@authors, :id, :name, article.author_id), {}, { disabled: (params[:action] == "show"), class:"select" } %>
-       </div>
-     </div>
-
+      <div class="input-container">
+        <%= form.label :author_id, class:"label" %>
+        <%= form.select :author_id, options_from_collection_for_select(@authors, :id, :name, article.author_id), {}, { disabled: (params[:action] == "show"), class:"select" } %>
+      </div>
+    </div>
 
     <div>
       <%= form.label :cover_image, style: "display: block", class: "label-input-file" %>
@@ -42,11 +37,33 @@
 
         <%= link_to "Remover",
               destroy_cover_image_administrate_article_path(article),
-data: { "turbo-confirm": "Tem certeza?", "turbo-method": :delete } if article.cover_image.attached? && params[:action]!="show" %>      </div>
+              data: { "turbo-confirm": "Tem certeza?", "turbo-method": :delete } if article.cover_image.attached? && params[:action] != "show" %>
+      </div>
     </div>
 
-     <%= button_to "Apagar artigo", [:administrate, @article], data: { turbo: false }, method: :delete, class:"button small" if params[:action]!="show" %>
-
+    <%= button_to "Apagar artigo", [:administrate, @article], data: { turbo: false }, method: :delete, class:"button small" if params[:action] == "show" %>
     <%= form.submit style: "display: none;" %>
   <% end %>
 </div>
+
+
+<script>
+  const markdownButton = document.getElementById('markdown-button');
+
+  markdownButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const el = document.querySelector('textarea');
+    const stackedit = new Stackedit();
+
+    stackedit.openFile({
+      name: 'Filename',
+      content: {
+        text: el.value
+      }
+    });
+
+    stackedit.on('fileChange', (file) => {
+      el.value = file.content.text;
+    });
+  });
+</script>
